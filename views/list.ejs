@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= shopData.shopName %> - Book List</title>
+</head>
+<body>
+  <h1><%= shopData.shopName %></h1>
+  <h2>Available Books</h2>
+
+  <table border="1">
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Price (£)</th>
+    </tr>
+
+    <% availableBooks.forEach(function(book) { %>
+      <tr>
+        <td><%= book.id %></td>
+        <td><%= book.name %></td>
+        <td><%= book.price %></td>
+      </tr>
+    <% }); %>
+  </table>
+
+  <p><a href="/">Back to home</a></p>
+</body>
+</html>

@@ -6,8 +6,14 @@
   </head>
   <body>
     <h1>Welcome to <%=shopData.shopName%></h1>
-    <p><a href="about">About <%=shopData.shopName%></a></p>
-    <p><a href="books/search">Search for books</a></p>
-    <p><a href="users/register">Register with us</a></p>
+
+    <ul>
+      <li><a href="/about">About <%=shopData.shopName%></a></li>
+      <li><a href="/books/search">Search for books</a></li>
+      <li><a href="/users/register">Register with us</a></li>
+      <li><a href="/books/list">View all books</a></li>
+      <li><a href="/books/addbook">Add a new book</a></li>
+      <li><a href="/books/bargainbooks">View bargain books</a></li>
+    </ul>
   </body>
 </html>
