@@ -2,9 +2,10 @@
 
 Sample code for Dynamic Web Applications module.
 
-Uses node.js with Express and EJS.
+Dependencies: express, ejs, mysql2 ,bcrypt, dotenv 
 
 To install and run:
 
 npm install
 node index.js
+
