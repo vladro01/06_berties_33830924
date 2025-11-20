@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Registered users - <%= shopData.shopName %></title>
+    <link rel="stylesheet" type="text/css" href="/main.css" />
+  </head>
+  <body>
+    <h1>Registered users for <%= shopData.shopName %></h1>
+
+    <% if (users.length === 0) { %>
+      <p>No users found.</p>
+    <% } else { %>
+      <table>
+        <tr>
+          <th>Username</th>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+        <% users.forEach(function (u) { %>
+          <tr>
+            <td><%= u.username %></td>
+            <td><%= u.first %> <%= u.last %></td>
+            <td><%= u.email %></td>
+          </tr>
+        <% }); %>
+      </table>
+    <% } %>
+  </body>
+</html>
