@@ -11,10 +11,10 @@ node index.js
 
 Database credentials are not hard-coded in the code.
 They are loaded from a .env file using dotenv.
-Create a .env file in the project root with:
-'''bash
-BB_USER='berties_books_app'
-BB_PASSWORD='qwertyuiop'
-BB_DATABASE='berties_books' '''
+
+''BB_USER='berties_books_app'
+  BB_PASSWORD='qwertyuiop'
+  BB_DATABASE='berties_books'
+''
 
 
