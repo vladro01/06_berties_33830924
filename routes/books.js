@@ -2,12 +2,20 @@
 const express = require("express")
 const router = express.Router()
 
+const redirectLogin = (req, res, next) => {
+    if (!req.session || !req.session.userId) {
+      res.redirect('/users/login');
+    } else {
+      next();
+    }
+  };
+
 router.get('/search',function(req, res, next){
     res.render("search.ejs")
 });
 
 router.get('/search-result', function (req, res, next) {
-    let keyword = req.query.keyword;
+    let keyword = req.sanitize(req.query.keyword || '');
     let sqlquery = "SELECT * FROM books WHERE name LIKE ?";
     let params = ['%' + keyword + '%'];
 
@@ -18,7 +26,7 @@ router.get('/search-result', function (req, res, next) {
         res.render('list.ejs', { availableBooks: result });
     });
 });
-router.get('/list', function(req, res, next) {
+router.get('/list',redirectLogin, function(req, res, next) {
     let sqlquery = "SELECT * FROM books"; // query database to get all the books
     // execute sql query
     db.query(sqlquery, (err, result) => {
@@ -29,7 +37,7 @@ router.get('/list', function(req, res, next) {
      });
 });
 // Show the add book form
-router.get('/addbook', function (req, res, next) {
+router.get('/addbook',redirectLogin, function (req, res, next) {
     res.render('addbook.ejs');
 });
 
@@ -47,7 +55,7 @@ router.post('/bookadded', function (req, res, next) {
     });
 });
 //Extensions
-router.get('/bargainbooks', function (req, res, next) {
+router.get('/bargainbooks',redirectLogin, function (req, res, next) {
     let sqlquery = "SELECT * FROM books WHERE price < 20";
 
     db.query(sqlquery, (err, result) => {
