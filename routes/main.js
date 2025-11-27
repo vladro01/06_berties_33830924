@@ -4,7 +4,7 @@ const router = express.Router()
 
 const redirectLogin = (req, res, next) => {
     if (!req.session || !req.session.userId) {
-      res.redirect('/users/login');
+        res.redirect('/usr/247/users/login');
     } else {
       next();
     }

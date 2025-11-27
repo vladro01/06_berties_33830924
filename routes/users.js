@@ -12,7 +12,7 @@ const { check, validationResult } = require('express-validator');
 // Middleware to protect  the routes
 const redirectLogin = (req, res, next) => {
   if (!req.session || !req.session.userId) {
-    res.redirect(baseURL + '/users/login');;
+    res.redirect('/usr/247/users/login');
   } else {
     next();
   }
