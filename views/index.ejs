@@ -1,22 +1,23 @@
 <!doctype html>
 <html>
   <head>
-    <title>Welcome to <%=shopData.shopName%></title>
-    <link rel="stylesheet"  type="text/css" href="/main.css" />
+    <title>Welcome to <%= shopData.shopName %></title>
+    <!-- note the baseURL in the CSS path -->
+    <link rel="stylesheet" type="text/css" href="<%= baseURL %>/main.css" />
   </head>
   <body>
-    <h1>Welcome to <%=shopData.shopName%></h1>
+    <h1>Welcome to <%= shopData.shopName %></h1>
 
     <ul>
-      <li><a href="/about">About <%=shopData.shopName%></a></li>
-      <li><a href="/books/search">Search for books</a></li>
-      <li><a href="/users/register">Register with us</a></li>
-      <li><a href="/users/login">Login</a></li>             
-      <li><a href="/users/audit">View login audit</a></li>
-      <li><a href="/books/list">View all books</a></li>
-      <li><a href="/books/addbook">Add a new book</a></li>
-      <li><a href="/books/bargainbooks">View bargain books</a></li>
-      <li><a href="/logout">Logout</a></li>
+      <li><a href="<%= baseURL %>/about">About <%= shopData.shopName %></a></li>
+      <li><a href="<%= baseURL %>/books/search">Search for books</a></li>
+      <li><a href="<%= baseURL %>/users/register">Register with us</a></li>
+      <li><a href="<%= baseURL %>/users/login">Login</a></li>
+      <li><a href="<%= baseURL %>/users/audit">View login audit</a></li>
+      <li><a href="<%= baseURL %>/books/list">View all books</a></li>
+      <li><a href="<%= baseURL %>/books/addbook">Add a new book</a></li>
+      <li><a href="<%= baseURL %>/books/bargainbooks">View bargain books</a></li>
+      <li><a href="<%= baseURL %>/logout">Logout</a></li>
     </ul>
   </body>
 </html>

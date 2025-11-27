@@ -11,6 +11,8 @@ const expressSanitizer = require('express-sanitizer');
 const app = express()
 const port = 8000
 
+const baseURL = '/usr/247';
+app.locals.baseURL = baseURL;
 // Define the database connection pool
 const db = mysql.createPool({
   host: 'localhost',
