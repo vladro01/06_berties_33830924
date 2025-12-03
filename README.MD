@@ -42,3 +42,41 @@ Install dependencies:
 
 ```bash
 npm install
+```
+
+``` bash 
+env
+BB_USER=berties_books_app
+BB_PASSWORD=your_db_password_here
+BB_DATABASE=berties_books
+OWM_API_KEY=your_openweathermap_8966c9d292dcf7908a7466e89d9b4ac7
+```
+
+
+## 3. Database 
+CREATE DATABASE berties_books;
+USE berties_books;
+SOURCE create_db.sql;
+SOURCE insert_test_data.sql;
+
+## 4. Api additions
+-  GET /weather- simple form asking for a city 
+- POST /weather - uses request to call the OpenWeatherMap “current weather” API with OWM_API_KEY from .env
+-GET /api/books - returns all the books as JSON.
+Public no login required
+
+Query parameters:
+- search - filter by title substring
+/api/books?search=world
+- minprice, max_price - price range
+/api/books?minprice=5&max_price=10
+- sort – name or price
+/api/books?sort=name
+
+This displays temperature , what it feels like, city name, wind speed and humidity values
+It also includes error handling 
+
+## Links
+home=https://www.doc.gold.ac.uk/usr/247/
+Github repo=https://github.com/vladro01/06_berties_33830924.git
+

@@ -4,7 +4,7 @@ const router = express.Router();
 // GET /api/books
 // Returns a JSON list of books, with optional filters:
 //   ?search=world
-//   ?minprice=5&max_price=10
+//   ?minprice=5&max_price=20
 //   ?sort=name  or  ?sort=price
 router.get('/books', function (req, res, next) {
   // Base SQL
@@ -12,13 +12,13 @@ router.get('/books', function (req, res, next) {
   const params = [];
   const conditions = [];
 
-  // search term search = world
+  // search term search =  eg. world
   if (req.query.search) {
     conditions.push('name LIKE ?');
     params.push('%' + req.query.search + '%');
   }
 
-  // price range minprice = 5 max_price = 10
+  // price range minprice = 5 max_price = 20
   if (req.query.minprice && req.query.max_price) {
     conditions.push('price BETWEEN ? AND ?');
     params.push(req.query.minprice, req.query.max_price);
