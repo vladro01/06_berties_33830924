@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Weather at Bertie’s Books</title>
+  </head>
+  <body>
+    <h1>Weather at Bertie’s Books</h1>
+
+    <form action="/weather" method="POST">
+      <label for="city">Enter city name:</label>
+      <input type="text" id="city" name="city" value="<%= city || '' %>" required>
+      <button type="submit">Get weather</button>
+    </form>
+
+    <% if (weatherMessage) { %>
+      <h2>Result</h2>
+      <p><%= weatherMessage %></p>
+    <% } %>
+
+    <% if (error) { %>
+      <p style="color: red;"><%= error %></p>
+    <% } %>
+
+    <p><a href="/">Back to home</a></p>
+  </body>
+</html>

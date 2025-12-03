@@ -6,6 +6,7 @@ var mysql = require('mysql2');
 require('dotenv').config();
 var session = require('express-session');
 const expressSanitizer = require('express-sanitizer');
+const request = require('request');
 
 // Create the express application object
 const app = express()
@@ -56,6 +57,60 @@ app.use('/users', usersRoutes)
 // Load the route handlers for /books
 const booksRoutes = require('./routes/books')
 app.use('/books', booksRoutes)
+
+// Load the route handlers for /api
+const apiRoutes = require('./routes/api')
+app.use('/api', apiRoutes)
+
+// Show the weather form
+app.get('/weather', function (req, res) {
+  res.render('weather.ejs', { city: null, weatherMessage: null, error: null });
+});
+
+// Handle the form submission and call the API
+app.post('/weather', function (req, res, next) {
+  const apiKey = process.env.OWM_API_KEY;
+  const city = req.body.city;
+
+  const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+
+  request(url, function (err, response, body) {
+    if (err) {
+      return next(err);
+    } else {
+      try {
+        const weather = JSON.parse(body);
+
+        // If the city is invalid or we didn’t get the expected data
+        if (!weather || !weather.main) {
+          return res.render('weather.ejs', {
+            city,
+            weatherMessage: null,
+            error: 'No data found for that city.',
+          });
+        }
+
+        const wmsg =
+          'It is ' + weather.main.temp + '°C in ' + weather.name +
+          '. Feels like ' + weather.main.feels_like + '°C.' +
+          '<br>Humidity: ' + weather.main.humidity + '%.' +
+          '<br>Wind speed: ' + weather.wind.speed + ' m/s.';
+
+        res.render('weather.ejs', {
+          city,
+          weatherMessage: wmsg,
+          error: null,
+        });
+      } catch (e) {
+        res.render('weather.ejs', {
+          city,
+          weatherMessage: null,
+          error: 'There was a problem reading the weather data.',
+        });
+      }
+    }
+  });
+});
 
 // Start the web app listening
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
